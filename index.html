@@ -1,0 +1,414 @@
+<html>
+    <head>
+        <title>Pokewalker Sprite Viewer</title>
+        <style>
+#drop_zone {
+  border: 5px solid blue;
+  width:  200px;
+  height: 100px;
+}
+
+#selector {
+    height: 500px;
+    width: 400px;
+    overflow-y: scroll;
+    list-style: none;
+    border: 2px solid black;
+    margin: 0px;
+    padding: 0px;
+}
+
+canvas {
+    margin: auto;
+    image-rendering: pixelated;
+    height: auto;
+    width: 100%;
+    max-width: 500px;
+    max-height: 500px;
+}
+
+#container {
+    display: flex;
+    align-items: center;
+}
+
+.sprite-item {
+    color: black;
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+.sprite-item:hover {
+    background-color: gray;
+    color: white;
+}
+
+#filter {
+    width: 100%;
+}
+
+.selected-item {
+    background-color: black !important;
+    color: white !important;
+}
+
+#overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#overlay-box {
+  border: 1px dashed black;
+  height: 300px;
+  width: 350px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+</style>
+<script>
+const csv = `digit_0,640,8,16
+digit_1,672,8,16
+digit_2,704,8,16
+digit_3,736,8,16
+digit_4,768,8,16
+digit_5,800,8,16
+digit_6,832,8,16
+digit_7,864,8,16
+digit_8,896,8,16
+digit_9,928,8,16
+digit_colon,960,8,16
+digit_dash,992,8,16
+digit_slash,1024,8,16
+watt,1056,16,16
+pokeball,1120,8,8
+event_pokeball,1136,8,8
+unused1,1152,8,4
+item,1160,8,8
+event_item,1176,8,8
+map,1192,8,8
+heart,1208,8,8
+spade,1224,8,8
+diamond,1240,8,8
+club,1256,8,8
+up,1272,8,8
+up_offset,1288,8,8
+up_inverted,1304,8,8
+down,1320,8,8
+down_offset,1336,8,8
+down_inverted,1352,8,8
+left,1368,8,8
+left_offset,1384,8,8
+left_inverted,1400,8,8
+right,1416,8,8
+right_offset,1432,8,8
+right_inverted,1448,8,8
+menu_left,1464,8,16
+menu_right,1496,8,16
+menu_return,1528,8,16
+unused2,1560,8,16
+more_messages_or,1592,8,8
+more_messages_and,1608,8,4
+vial,1616,8,8
+low_battery,1632,8,8
+emote_exclamation,1648,24,16
+emote_heart,1744,24,16
+emote_note,1840,24,16
+emote_smile,1936,24,16
+emote_neutral,2032,24,16
+emote_ellipsis,2128,24,16
+bubble_exclamation,2224,24,16
+menu_pokeradar_txt,2320,80,16
+menu_dowsing_txt,2640,80,16
+menu_connect_txt,2960,80,16
+menu_trainercard_txt,3280,80,16
+menu_poke_and_items_txt,3600,80,16
+menu_settings_txt,3920,80,16
+menu_pokeradar,4240,16,16
+menu_dowsing,4304,16,16
+menu_connect,4368,16,16
+menu_trainercard,4432,16,16
+menu_poke_and_items,4496,16,16
+menu_settings,4560,16,16
+trainer,4624,16,16
+curr_trainer_name,4688,80,16
+route_icon,5008,16,16
+steps_txt,5072,40,16
+time_txt,5232,32,16
+days_txt,5360,40,16
+total_days_txt,5520,64,16
+sound_txt,5776,40,16
+shade_txt,5936,40,16
+sound_off,6096,24,16
+sound_low,6192,24,16
+sound_high,6288,24,16
+contrast_bar,6384,8,16
+chest_large,6416,32,24
+map_large,6608,32,24
+large_present,6800,32,24
+dowsing_bush_dark,6992,16,16
+dowsing_bush_light,7056,16,16
+left_txt,7120,32,16
+blank,7248,16,24
+bush_dark,7344,32,24
+exclamation_bubble1,7536,16,16
+exclamation_bubble2,7600,16,16
+exclamation_bubble3,7664,16,16
+bush_poke_found,7728,16,16
+attack,7792,16,32
+crit,7920,16,32
+cloud,8048,32,24
+hp_bar,8240,8,8
+catch,8256,8,8
+battle_menu,8272,96,32
+pokewalker,9040,32,32
+ir,9296,8,16
+music,9328,8,8
+blank_icon,9344,8,8
+hours_txt,9360,40,16
+connecting_txt,9520,96,16
+no_trainer_txt,9904,96,16
+cannot_comp_conn_txt,10288,96,32
+cannot_connect_txt,11056,96,16
+trainer_unavail_txt,11440,96,32
+already_recv_event_txt,12208,96,32
+cannot_conn_again_txt,12976,96,32
+could_not_recv_txt,13744,96,32
+has_arrived_txt,14512,96,16
+has_left_txt,14896,96,16
+received_txt,15280,96,16
+completed_txt,15664,96,16
+special_map_txt,16048,96,16
+stamp_txt,16432,96,16
+special_route_txt,16816,96,16
+need_more_watts_txt,17200,96,16
+no_poke_held_txt,17584,96,16
+nothing_held_txt,17968,96,16
+discover_item_txt,18352,96,16
+found_txt,18736,96,16
+nothing_found_txt,19120,96,16
+its_near_txt,19504,96,16
+its_far_txt,19888,96,16
+find_poke_txt,20272,96,16
+found_something_txt,20656,96,16
+it_got_away_txt,21040,96,16
+appeared_txt,21424,96,16
+was_caught_txt,21808,96,16
+fled_txt,22192,96,16
+was_too_strong_txt,22576,96,16
+attacked_txt,22960,96,16
+evaded_txt,23344,96,16
+crit_txt,23728,96,16
+blank_txt,24112,96,16
+threw_pokeball_txt,24496,96,16
+almost_had_it_txt,24880,96,16
+stare_down_txt,25264,96,16
+lost_txt,25648,96,16
+has_arrived_txt,26032,96,16
+had_adventures_txt,26416,96,16
+play_battled_txt,26800,96,16
+went_for_run_txt,27184,96,16
+went_for_walk_txt,27568,96,16
+played_a_bit_txt,27952,96,16
+heres_a_gift_txt,28336,96,16
+cheered_txt,28720,96,16
+is_very_happy_txt,29104,96,16
+is_having_fun_txt,29488,96,16
+is_feeling_good_txt,29872,96,16
+is_happy_txt,30256,96,16
+is_smiling_txt,30640,96,16
+is_cheerful_txt,31024,96,16
+is_patient_txt,31408,96,16
+sits_quietly_txt,31792,96,16
+turned_to_look_txt,32176,96,16
+is_looking_around_txt,32560,96,16
+is_looking_this_way_txt,32944,96,16
+is_daydreaming_txt,33328,96,16
+found_something_txt,33712,96,16
+what_txt,34096,96,16
+joined_you_txt,34480,96,16
+reward_txt,34864,96,16
+good_job_txt,35248,96,16
+switch_txt,35632,80,16`
+
+function parseCSV(csv) {
+    return csv.split('\n')
+        .filter(l => l.length !== 0)
+        .map(l => l.split(',').map(d => d.trim()))
+}
+
+const sprites = parseCSV(csv)
+
+function loadSelector() {
+    const selector = document.getElementById('selector');
+    sprites.forEach(([name, offset, width, height], i) => {
+        const li = document.createElement('li');
+        li.classList.add('sprite-item')
+        li.innerText = name;
+        li.onclick = ((evt) => {
+            for (let item of document.getElementsByClassName('selected-item')) {
+                item.classList.remove('selected-item')
+            }
+            evt.target.classList.add('selected-item')
+            window.fileData.then(async data => {
+                const spriteData = pwGetSpriteData(await fileData, offset, width, height);
+                const decData = pwDecodeSprite(spriteData, width, height);
+                const imageData = pwDataToImageData(decData, width, height);
+                draw(imageData, width, height);
+            })
+
+        });
+        selector.appendChild(li);
+    })
+}
+
+function onFilter(evt) {
+    const filter = evt.target.value
+    const items = document.getElementsByClassName('sprite-item')
+    for (let item of items) {
+        console.log(item)
+        const shouldDisplay = filter === '' || item.innerText.includes(filter)
+        item.style.display = shouldDisplay ? '' : 'none'
+    }
+}
+
+function pwGetSpriteData(array, offset, width, height) {
+    return array.slice(offset, offset + width * height / 4)
+}
+
+
+// Credit to DmitryGR for this algo
+function pwDecodeSprite(data8, width, height) {
+    const buffer = data8.buffer
+    const data = new Uint16Array(buffer, 0, width * height / 4)
+    const res = new Uint8Array(new ArrayBuffer(width * height))
+
+    let i = 0;
+    for (let r = 0; r < height; r += 8) {
+        for (let c = 0; c < width; c++) {
+            const curr = data[i++];
+            for (let r2 = 0; r2 < 8; r2++) {
+                let o = curr >> r2
+                let col = ((o & 0x100) >> 7) | (o & 1);
+                res[(r + r2) * width + c] = col
+            }
+        }
+    }
+
+    return res
+}
+
+const colors = [
+    [172, 174, 163, 255],
+    [128, 130, 116, 255],
+    [92, 92, 82, 255],
+    [30, 25, 22, 255]
+]
+
+function pwDataToImageData(data, width, height) {
+    const imgData = new Uint8ClampedArray(new ArrayBuffer(width * height * 4))
+
+    for (let y = 0; y < height; y++) {
+        for (x = 0; x < width; x++) {
+            const dataIdx = y * width + x
+            const imgDataIdx = dataIdx * 4
+            const col = colors[data[dataIdx]]
+
+            for (let i = 0; i < 4; i++) {
+                imgData[imgDataIdx + i] = col[i]
+            }
+        }
+    }
+
+    return new ImageData(imgData, width, height)
+}
+
+function draw(data, width, height) {
+    const canvas = document.getElementById('pic')
+    canvas.width = width
+    canvas.height = height
+
+    const ctx = canvas.getContext('2d')
+    ctx.putImageData(data, 0, 0)
+}
+
+function readFile(file) {
+    return new Promise(r => {
+        const reader = new FileReader()
+        reader.onload = (evt) => {
+            const data = new Uint8Array(evt.target.result)
+            r(data)
+        };
+        reader.readAsArrayBuffer(file);
+    })
+}
+
+function dragOverHandler(ev) {
+  ev.preventDefault();
+}
+
+
+function dragEventGetFiles(ev) {
+    if (ev.dataTransfer.items) {
+        return [...ev.dataTransfer.items]
+            .filter(item => item.kind === 'file')
+            .map(item => item.getAsFile())
+  } else {
+    return [...ev.dataTransfer.files]
+  }
+}
+
+function dropHandler(ev) {
+  ev.preventDefault();
+
+  console.log('yes')
+
+  document.getElementById('overlay').style.display = 'none';
+
+  const files = dragEventGetFiles(ev);
+  if (files.length !== 1) {
+    return;
+  }
+  const file = files[0];
+
+  window.fileData = readFile(file);
+}
+
+</script>
+    </head>
+    <body ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+        <div id="overlay">
+            <div id="overlay-box">
+                <p>Drag &amp; Drop File Here</p>
+                <p>OR</p>
+                <input type="file">
+                <p>OR</p>
+                <div>
+                    From URL: <input type="text" value="https://github.com/mamba2410/reverse-pokewalker/blob/master/dumps/bin/64k-full-rom.bin?raw=true"/> <button>Load</button>
+                </div>
+            </div>
+        </div>
+        <div id="container">
+            <div>
+                <input type="search" id="filter" placeholder="Filter" oninput='onFilter(event)'/>
+                <ul id="selector"></ul>
+            </div>
+
+            <script>loadSelector()</script>
+
+            <canvas id="pic" width="32", height="32"></canvas>
+        </div>
+    </body>
+</html>
