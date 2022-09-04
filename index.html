@@ -269,7 +269,8 @@ curr_specialrt_txt,c8fc,,80,16
 curr_specialrt_item_txt,ca3c,,96,16
 curr_peerplay_poke1,f400,,32,24
 curr_peerplay_poke2,f4c0,,32,24
-curr_peerplay_poke_txt,f580,,80,16`
+curr_peerplay_poke_txt,f580,,80,16
+curr_trainer_name,1250,,80,16`
 
 function parseCSV(csv) {
     return csv.split('\n')
@@ -306,7 +307,6 @@ function onFilter(evt) {
     const filter = evt.target.value
     const items = document.getElementsByClassName('sprite-item')
     for (let item of items) {
-        console.log(item)
         const shouldDisplay = filter === '' || item.innerText.includes(filter)
         item.style.display = shouldDisplay ? '' : 'none'
     }
