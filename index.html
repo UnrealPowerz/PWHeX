@@ -79,169 +79,197 @@ canvas {
 
 </style>
 <script>
-const csv = `digit_0,640,8,16
-digit_1,672,8,16
-digit_2,704,8,16
-digit_3,736,8,16
-digit_4,768,8,16
-digit_5,800,8,16
-digit_6,832,8,16
-digit_7,864,8,16
-digit_8,896,8,16
-digit_9,928,8,16
-digit_colon,960,8,16
-digit_dash,992,8,16
-digit_slash,1024,8,16
-watt,1056,16,16
-pokeball,1120,8,8
-event_pokeball,1136,8,8
-unused1,1152,8,4
-item,1160,8,8
-event_item,1176,8,8
-map,1192,8,8
-heart,1208,8,8
-spade,1224,8,8
-diamond,1240,8,8
-club,1256,8,8
-up,1272,8,8
-up_offset,1288,8,8
-up_inverted,1304,8,8
-down,1320,8,8
-down_offset,1336,8,8
-down_inverted,1352,8,8
-left,1368,8,8
-left_offset,1384,8,8
-left_inverted,1400,8,8
-right,1416,8,8
-right_offset,1432,8,8
-right_inverted,1448,8,8
-menu_left,1464,8,16
-menu_right,1496,8,16
-menu_return,1528,8,16
-unused2,1560,8,16
-more_messages_or,1592,8,8
-more_messages_and,1608,8,4
-vial,1616,8,8
-low_battery,1632,8,8
-emote_exclamation,1648,24,16
-emote_heart,1744,24,16
-emote_note,1840,24,16
-emote_smile,1936,24,16
-emote_neutral,2032,24,16
-emote_ellipsis,2128,24,16
-bubble_exclamation,2224,24,16
-menu_pokeradar_txt,2320,80,16
-menu_dowsing_txt,2640,80,16
-menu_connect_txt,2960,80,16
-menu_trainercard_txt,3280,80,16
-menu_poke_and_items_txt,3600,80,16
-menu_settings_txt,3920,80,16
-menu_pokeradar,4240,16,16
-menu_dowsing,4304,16,16
-menu_connect,4368,16,16
-menu_trainercard,4432,16,16
-menu_poke_and_items,4496,16,16
-menu_settings,4560,16,16
-trainer,4624,16,16
-curr_trainer_name,4688,80,16
-route_icon,5008,16,16
-steps_txt,5072,40,16
-time_txt,5232,32,16
-days_txt,5360,40,16
-total_days_txt,5520,64,16
-sound_txt,5776,40,16
-shade_txt,5936,40,16
-sound_off,6096,24,16
-sound_low,6192,24,16
-sound_high,6288,24,16
-contrast_bar,6384,8,16
-chest_large,6416,32,24
-map_large,6608,32,24
-large_present,6800,32,24
-dowsing_bush_dark,6992,16,16
-dowsing_bush_light,7056,16,16
-left_txt,7120,32,16
-blank,7248,16,24
-bush_dark,7344,32,24
-exclamation_bubble1,7536,16,16
-exclamation_bubble2,7600,16,16
-exclamation_bubble3,7664,16,16
-bush_poke_found,7728,16,16
-attack,7792,16,32
-crit,7920,16,32
-cloud,8048,32,24
-hp_bar,8240,8,8
-catch,8256,8,8
-battle_menu,8272,96,32
-pokewalker,9040,32,32
-ir,9296,8,16
-music,9328,8,8
-blank_icon,9344,8,8
-hours_txt,9360,40,16
-connecting_txt,9520,96,16
-no_trainer_txt,9904,96,16
-cannot_comp_conn_txt,10288,96,32
-cannot_connect_txt,11056,96,16
-trainer_unavail_txt,11440,96,32
-already_recv_event_txt,12208,96,32
-cannot_conn_again_txt,12976,96,32
-could_not_recv_txt,13744,96,32
-has_arrived_txt,14512,96,16
-has_left_txt,14896,96,16
-received_txt,15280,96,16
-completed_txt,15664,96,16
-special_map_txt,16048,96,16
-stamp_txt,16432,96,16
-special_route_txt,16816,96,16
-need_more_watts_txt,17200,96,16
-no_poke_held_txt,17584,96,16
-nothing_held_txt,17968,96,16
-discover_item_txt,18352,96,16
-found_txt,18736,96,16
-nothing_found_txt,19120,96,16
-its_near_txt,19504,96,16
-its_far_txt,19888,96,16
-find_poke_txt,20272,96,16
-found_something_txt,20656,96,16
-it_got_away_txt,21040,96,16
-appeared_txt,21424,96,16
-was_caught_txt,21808,96,16
-fled_txt,22192,96,16
-was_too_strong_txt,22576,96,16
-attacked_txt,22960,96,16
-evaded_txt,23344,96,16
-crit_txt,23728,96,16
-blank_txt,24112,96,16
-threw_pokeball_txt,24496,96,16
-almost_had_it_txt,24880,96,16
-stare_down_txt,25264,96,16
-lost_txt,25648,96,16
-has_arrived_txt,26032,96,16
-had_adventures_txt,26416,96,16
-play_battled_txt,26800,96,16
-went_for_run_txt,27184,96,16
-went_for_walk_txt,27568,96,16
-played_a_bit_txt,27952,96,16
-heres_a_gift_txt,28336,96,16
-cheered_txt,28720,96,16
-is_very_happy_txt,29104,96,16
-is_having_fun_txt,29488,96,16
-is_feeling_good_txt,29872,96,16
-is_happy_txt,30256,96,16
-is_smiling_txt,30640,96,16
-is_cheerful_txt,31024,96,16
-is_patient_txt,31408,96,16
-sits_quietly_txt,31792,96,16
-turned_to_look_txt,32176,96,16
-is_looking_around_txt,32560,96,16
-is_looking_this_way_txt,32944,96,16
-is_daydreaming_txt,33328,96,16
-found_something_txt,33712,96,16
-what_txt,34096,96,16
-joined_you_txt,34480,96,16
-reward_txt,34864,96,16
-good_job_txt,35248,96,16
-switch_txt,35632,80,16`
+const csv = `digit_0,280,28d4,8,16
+digit_1,2a0,28d8,8,16
+digit_2,2c0,28dc,8,16
+digit_3,2e0,28e0,8,16
+digit_4,300,28e4,8,16
+digit_5,320,28e8,8,16
+digit_6,340,28ec,8,16
+digit_7,360,28f0,8,16
+digit_8,380,28f4,8,16
+digit_9,3a0,28f8,8,16
+digit_colon,3c0,28fc,8,16
+digit_dash,3e0,2900,8,16
+digit_slash,400,2904,8,16
+watt,420,2908,16,16
+up,4f8,290c,8,8
+up_offset,508,2910,8,8
+up_inverted,518,2914,8,8
+down,528,2918,8,8
+down_offset,538,291c,8,8
+down_inverted,548,2920,8,8
+left,558,2924,8,8
+left_offset,568,2928,8,8
+left_inverted,578,292c,8,8
+right,588,2930,8,8
+right_offset,598,2934,8,8
+right_inverted,5a8,2938,8,8
+menu_left,5b8,293c,8,16
+menu_right,5d8,2940,8,16
+menu_return,5f8,2944,8,16
+unused1,480,,8,4
+unused2,618,,8,16
+more_messages_or,638,2948,8,8
+pokeball,460,2950,8,8
+event_pokeball,470,2954,8,8
+item,488,2958,8,8
+event_item,498,295c,8,8
+map,4a8,2960,8,8
+heart,4b8,2964,8,8
+spade,4c8,2968,8,8
+diamond,4d8,296c,8,8
+vial,650,2974,8,8
+low_battery,660,2978,8,8
+menu_pokeradar,1090,297c,16,16
+menu_dowsing,10d0,2980,16,16
+menu_connect,1110,2984,16,16
+menu_trainercard,1150,2988,16,16
+menu_poke_and_items,1190,298c,16,16
+menu_settings,11d0,2990,16,16
+menu_pokeradar_txt,910,2994,80,16
+menu_dowsing_txt,a50,2998,80,16
+menu_connect_txt,b90,299c,80,16
+menu_trainercard_txt,cd0,29a0,80,16
+menu_poke_and_items_txt,e10,29a4,80,16
+menu_settings_txt,f50,29a8,80,16
+dowsing_bush_dark,1b50,29b0,16,16
+dowsing_bush_light,1b90,29b8,16,16
+left_txt,1bd0,29c0,32,16
+blank_icon,2480,29c8,8,8
+blank_icon,2480,29d0,8,8
+exclamation_bubble1,1d70,29d8,16,16
+exclamation_bubble2,1db0,29e0,16,16
+exclamation_bubble3,1df0,29e8,16,16
+bush_poke_found,1e30,29f0,16,16
+blank_icon,2480,29f8,8,8
+crit,1ef0,2a00,16,32
+cloud,1f70,2a08,32,24
+hp_bar,2030,2a10,8,8
+catch,2040,2a14,8,8
+battle_menu,2050,2a1c,96,32
+trainer,1210,2dd0,16,16
+route_icon,1390,2dd8,16,16
+steps_txt,13d0,2de0,40,16
+time_txt,1470,2de8,32,16
+time_txt,1470,2df0,32,16
+days_txt,14f0,2df4,40,16
+total_days_txt,1590,2dfc,64,16
+chest_large,1910,2e04,32,24
+map_large,19d0,2e0c,32,24
+large_present,1a90,2e14,32,24
+sound_txt,1690,2e1c,40,16
+shade_txt,1730,2e24,40,16
+contrast_bar,18f0,2e2c,8,16
+sound_low,1830,2e34,24,16
+sound_high,1890,2e3c,24,16
+sound_off,17d0,2e44,24,16
+pokewalker,2350,2e4c,32,32
+ir,2450,2e54,8,16
+music,2470,2e5c,8,8
+connecting_txt,2530,2e64,96,16
+no_trainer_txt,26b0,2e6c,96,16
+cannot_comp_conn_txt,2830,2e74,96,32
+cannot_connect_txt,2b30,2e84,96,16
+trainer_unavail_txt,2cb0,2e8c,96,32
+cannot_conn_again_txt,32b0,2eac,96,32
+could_not_recv_txt,35b0,2ebc,96,32
+has_arrived_txt,65b0,2ecc,96,16
+has_left_txt,3a30,2ed4,96,16
+received_txt,3bb0,2edc,96,16
+completed_txt,3d30,2ee4,96,16
+special_map_txt,3eb0,2eec,96,16
+stamp_txt,4030,2ef4,96,16
+special_route_txt,41b0,2efc,96,16
+need_more_watts_txt,4330,2f04,96,16
+no_poke_held_txt,44b0,2f0c,96,16
+nothing_held_txt,4630,2f14,96,16
+discover_item_txt,47b0,2f1c,96,16
+found_txt,4930,2f24,96,16
+nothing_found_txt,4ab0,2f2c,96,16
+its_near_txt,4c30,2f34,96,16
+its_far_txt,4db0,2f3c,96,16
+find_poke_txt,4f30,2f44,96,16
+found_something_txt,50b0,2f4c,96,16
+it_got_away_txt,5230,2f54,96,16
+appeared_txt,53b0,2f5c,96,16
+was_caught_txt,5530,2f64,96,16
+fled_txt,56b0,2f6c,96,16
+was_too_strong_txt,5830,2f74,96,16
+attacked_txt,59b0,2f7c,96,16
+evaded_txt,5b30,2f84,96,16
+crit_txt,5cb0,2f8c,96,16
+curr_eventitem_txt,bd48,2f94,96,16
+threw_pokeball_txt,5fb0,2f9c,96,16
+almost_had_it_txt,6130,2fa4,96,16
+stare_down_txt,62b0,2fac,96,16
+lost_txt,6430,2fb4,96,16
+has_arrived_txt,65b0,2fbc,96,16
+had_adventures_txt,6730,2fc4,96,16
+play_battled_txt,68b0,2fcc,96,16
+went_for_run_txt,6a30,2fd4,96,16
+went_for_walk_txt,6bb0,31a0,96,16
+played_a_bit_txt,6d30,31a8,96,16
+heres_a_gift_txt,6eb0,31b0,96,16
+cheered_txt,7030,31b8,96,16
+is_very_happy_txt,71b0,31c0,96,16
+is_having_fun_txt,7330,31c8,96,16
+is_feeling_good_txt,74b0,31d0,96,16
+is_happy_txt,7630,31d8,96,16
+is_smiling_txt,77b0,31e0,96,16
+is_cheerful_txt,7930,31e8,96,16
+is_patient_txt,7ab0,31f0,96,16
+sits_quietly_txt,7c30,31f8,96,16
+turned_to_look_txt,7db0,3200,96,16
+is_looking_around_txt,7f30,3208,96,16
+is_looking_this_way_txt,80b0,3210,96,16
+is_daydreaming_txt,8230,3218,96,16
+found_something_txt,83b0,3220,96,16
+what_txt,8530,3228,96,16
+joined_you_txt,86b0,3230,96,16
+reward_txt,8830,3238,96,16
+good_job_txt,89b0,3240,96,16
+switch_txt,8b30,3248,80,16
+hours_txt,2490,3250,40,16
+emote_exclamation,670,3254,24,16
+emote_heart,6d0,3258,24,16
+emote_note,730,325c,24,16
+emote_smile,790,3260,24,16
+emote_neutral,7f0,3264,24,16
+emote_ellipsis,850,3268,24,16
+emote_exclamation_left,8b0,326c,24,16
+curr_area,8fbe,,32,24
+curr_area_txt,907e,,80,16
+curr_poke_small1,91be,,32,24
+curr_poke_small2,927e,,32,24
+curr_poke_large1,933e,,64,48
+curr_poke_large2,963e,,64,48
+curr_poke_txt,993e,,80,16
+curr_wildpoke1_1,9a7e,,32,24
+curr_wildpoke1_2,9b3e,,32,24
+curr_wildpoke2_1,9bfe,,32,24
+curr_wildpoke2_2,9cbe,,32,24
+curr_joinpoke_large1,9efe,,64,48
+curr_joinpoke_large2,a1fe,,64,48
+curr_wildpoke1_txt,a4fe,,80,16
+curr_wildpoke2_txt,a63e,,80,16
+curr_wildpoke3_txt,a77e,,80,16
+curr_item1_txt,a8be,,96,16
+curr_item2_txt,aa3e,,96,16
+curr_item3_txt,abbe,,96,16
+curr_eventpoke1,ba80,,32,24
+curr_eventpoke2,bb40,,32,24
+curr_eventpoke_txt,bc00,,80,16
+curr_eventitem_txt,bd48,,96,16
+curr_specialrt_poke1,bf7c,,32,24
+curr_specialrt_poke2,c03c,,32,24
+curr_specialrt_txt,c6fc,,80,16
+curr_specialrt,c83c,,32,24
+curr_specialrt_txt,c8fc,,80,16
+curr_specialrt_item_txt,ca3c,,96,16
+curr_peerplay_poke1,f400,,32,24
+curr_peerplay_poke2,f4c0,,32,24
+curr_peerplay_poke_txt,f580,,80,16`
 
 function parseCSV(csv) {
     return csv.split('\n')
@@ -253,7 +281,7 @@ const sprites = parseCSV(csv)
 
 function loadSelector() {
     const selector = document.getElementById('selector');
-    sprites.forEach(([name, offset, width, height], i) => {
+    sprites.forEach(([name, offset, _, width, height], i) => {
         const li = document.createElement('li');
         li.classList.add('sprite-item')
         li.innerText = name;
@@ -263,7 +291,7 @@ function loadSelector() {
             }
             evt.target.classList.add('selected-item')
             window.fileData.then(async data => {
-                const spriteData = pwGetSpriteData(await fileData, offset, width, height);
+                const spriteData = pwGetSpriteData(await fileData, parseInt(offset, 16), width, height);
                 const decData = pwDecodeSprite(spriteData, width, height);
                 const imageData = pwDataToImageData(decData, width, height);
                 draw(imageData, width, height);
@@ -292,7 +320,7 @@ function pwGetSpriteData(array, offset, width, height) {
 // Credit to DmitryGR for this algo
 function pwDecodeSprite(data8, width, height) {
     const buffer = data8.buffer
-    const data = new Uint16Array(buffer, 0, width * height / 4)
+    const data = new Uint16Array(buffer, 0)
     const res = new Uint8Array(new ArrayBuffer(width * height))
 
     let i = 0;
@@ -373,17 +401,22 @@ function dragEventGetFiles(ev) {
 function dropHandler(ev) {
   ev.preventDefault();
 
-  console.log('yes')
-
-  document.getElementById('overlay').style.display = 'none';
-
   const files = dragEventGetFiles(ev);
-  if (files.length !== 1) {
-    return;
+  if (files.length === 1) {
+    fileSelected(files[0])
   }
-  const file = files[0];
+}
 
-  window.fileData = readFile(file);
+function browseFile(evt) {
+    const files = evt.target.files
+    if (files.length === 1) {
+        fileSelected(files[0])
+    }
+}
+
+function fileSelected(file) {
+    document.getElementById('overlay').style.display = 'none';
+    window.fileData = readFile(file);
 }
 
 </script>
@@ -393,11 +426,7 @@ function dropHandler(ev) {
             <div id="overlay-box">
                 <p>Drag &amp; Drop File Here</p>
                 <p>OR</p>
-                <input type="file">
-                <p>OR</p>
-                <div>
-                    From URL: <input type="text" value="https://github.com/mamba2410/reverse-pokewalker/blob/master/dumps/bin/64k-full-rom.bin?raw=true"/> <button>Load</button>
-                </div>
+                <input type="file" onchange="browseFile(event)">
             </div>
         </div>
         <div id="container">
